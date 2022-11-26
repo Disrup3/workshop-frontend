@@ -5,7 +5,7 @@ import {publicProvider} from "wagmi/providers/public"
 // alchemyProvider({apiKey: "bfSzgTmgSKMUvNh1nW2CiQdUKLNO9K-e"})
 
 const { chains, provider } = configureChains(
-  [chain.polygon],
+  [chain.polygon, chain.goerli],
   [  publicProvider() ]
 )
 const client = createClient({

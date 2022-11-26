@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import abi from "../constants/721abi.json";
+import { abi } from "../constants/abi.json";
 import { useContractRead } from "wagmi";
 import Navbar from "../components/Navbar";
 import SelectContractAddress from "../components/SelectContractAddress";
@@ -13,11 +13,18 @@ export default function Home() {
   const {data: totalSupply} = useContractRead({
     address: contractAddress,
     abi: abi,
-    functionName: "totalSupply",
-    chainId: 137
+    functionName: "totalBettedAmount",
+    chainId: 5
   })
 
-  console.log(totalSupply)
+  const {data: teamList}  = useContractRead({
+    address: contractAddress,
+    abi: abi,
+    functionName: "getTeamList",
+    chainId: 5
+  })
+
+  console.log(teamList)
 
   return (
    <main>
@@ -38,7 +45,7 @@ export default function Home() {
       : (
         <div>
           <h2 className="text-center">Cantidad total apostada: {totalSupply?.toString()} matic</h2>
-          <TeamList />
+          <TeamList teamList={teamList as any[]}/>
         </div>
       )
     }    

@@ -1,16 +1,18 @@
 import { FC, useState } from "react";
+import {useContractAddressStore} from "../stores/contractAddressStore"
 
 interface Props {
-    setContractAddress: (address: string) => void;
+    setContractAddress?: (address: string) => void;
 }
 
-const SelectContractAddress: FC<Props> = ({setContractAddress}) => {
+const SelectContractAddress: FC<Props> = () => {
 
   const [formAddress, setFormAddress] = useState("");
+  const changeContractAddress = useContractAddressStore((state) => state.updateAddress)
 
   const setMainAddress = () => {
     if(formAddress.length < 1) return
-    setContractAddress(formAddress);
+    changeContractAddress(formAddress)
     setFormAddress("")
   }
 

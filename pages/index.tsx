@@ -5,6 +5,7 @@ import SelectContractAddress from "../components/SelectContractAddress";
 import TeamList from "../components/TeamList";
 import AppLayout from "../components/layouts/AppLayout";
 import {useContractAddressStore} from "../stores/contractAddressStore"
+import { ethers } from "ethers";
 
 
 
@@ -13,7 +14,7 @@ export default function Home() {
 
   
   const contractAddress = useContractAddressStore((state) => state.contractAddress)
-  const {data: totalSupply} = useContractRead({
+  const {data: totalBetAmount = 0} = useContractRead({
     address: contractAddress,
     abi: abi,
     functionName: "totalBettedAmount",
@@ -45,7 +46,7 @@ export default function Home() {
         )
         : (
           <div>
-            <h2 className="text-center">Cantidad total apostada: {totalSupply?.toString()} eth</h2>
+            <h2 className="text-center">Cantidad total apostada: {ethers.utils.formatEther(String(totalBetAmount))} eth</h2>
             <TeamList teamList={teamList as any[]}/>
           </div>
         )

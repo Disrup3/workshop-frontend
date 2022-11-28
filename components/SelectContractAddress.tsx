@@ -17,7 +17,7 @@ const SelectContractAddress: FC<Props> = () => {
   }
 
   return (
-    <form className="w-full max-w-sm">    
+    <div className="w-full max-w-sm">    
       <div className="flex flex-col align-center">
         <label>Select contract address:</label>
         <input 
@@ -29,7 +29,7 @@ const SelectContractAddress: FC<Props> = () => {
         />
         <button className=" p-1 mt-2 bg-red-200 rounded hover:bg-red-300" onClick={() => setMainAddress()}>Confirmar</button>
       </div>
-    </form>
+    </div>
   )
 }
 

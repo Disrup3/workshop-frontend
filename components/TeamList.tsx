@@ -47,6 +47,7 @@ const TeamCard: FC<TeamProps> = ({team}) => {
     const {write, data, error, isLoading, isSuccess} = useContractWrite(config)
 
     const handleFormOpen = () => {
+        setBetValue(0)
         setIsFormOpen(!isFormOpen)
     }
 
@@ -56,16 +57,25 @@ const TeamCard: FC<TeamProps> = ({team}) => {
     }
 
     return (
-        <div className=" shadow-md rounded border-red-100 m-5 p-5">
+        <div className=" max-h-fit flex flex-col shadow-md rounded border-red-100 m-5 p-5">
             <h3 className="text-center mb-2">{Number(team[0]) + 1} - {team[1].toString()}</h3>
-            <p>cantidad apostada: {team[2] > 0 ? ethers.utils.formatEther(team[2]) : 0} matic</p>
-            <button style={isFormOpen ? {display: "none"} : {display: "block"}} onClick={handleFormOpen} className="center">apostar</button>
+            <p className=" m-3 text-center">cantidad apostada a {team[1]} {team[2] > 0 ? ethers.utils.formatEther(team[2]) : 0} matic</p>
+            <button        
+             style={isFormOpen ? {display: "none"} : {display: "block"}} 
+             onClick={handleFormOpen} 
+             className=" rounded bg-gray-300 p-2 center"
+            > apostar
+            </button>
             {isFormOpen && (
                 <div>
-                    <div>
+                    <div className="mt-4">
                         <div className="flex flex-col">
-                            <label>Cantidad a apostar (eth) </label>
-                            <input onChange={(e) => setBetValue(Number(e.target.value))} type="number" />
+                            <label>Cantidad a apostar {betValue} ( eth ) </label>
+                            <input  
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                onChange={(e) => setBetValue(Number(e.target.value))} 
+                                type="number" 
+                            />
                         </div>
                         <div className="flex align-center justify-between mt-4">
                             <button  onClick={bet}>Apostar</button>

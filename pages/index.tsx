@@ -31,9 +31,8 @@ export default function Home() {
     <AppLayout>
       <main>
         {/* HERO */}
-        <section>
-          <h1  className="text-gray-900 text-center text-xl mt-20 mb-20"> WorldCup winner predictor</h1>
-          { contractAddress.length > 1 &&  <p className=" text-center">Connected to: {contractAddress}</p> }   
+        <section className="mt-[10vh]">
+          { contractAddress.length > 1 &&  <p className=" text-center">Connected to: <span >{contractAddress}</span></p> }   
         </section>
 
         {contractAddress.length < 1 
@@ -43,7 +42,7 @@ export default function Home() {
             </div>
           )
           : (
-            <div>
+            <div className="mt-5">
               <h2 className="text-center">Cantidad total apostada: {ethers.utils.formatEther(String(totalBetAmount))} eth</h2>
               <TeamList teamList={teamList as any[]}/>
             </div>

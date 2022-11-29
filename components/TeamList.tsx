@@ -9,36 +9,16 @@ interface Props {
 }
 
 const TeamList: FC<Props> = ({teamList}) => {
-
-    if(!teamList) return (
-        <div>
-            
-        </div>
-    )
-
-  return (
-    <div className="flex flex-wrap justify-center mt-10">
-        {teamList.map(team  => (
-            <TeamCard key={team.teamId} team={team}/>
-        ))}
-    </div>
-  )
-}
-interface TeamProps {
-    team: any[];
-}
-const TeamCard: FC<TeamProps> = ({team}) => {   
-    
-    const contractAddress = useContractAddressStore((state) => state.contractAddress)
-    const [isFormOpen, setIsFormOpen] = useState(false);
+    const [selectedTeam, setSelectedTeam] = useState<number>()
     const [betValue, setBetValue] = useState(0);
 
+    const contractAddress = useContractAddressStore((state) => state.contractAddress)
 
     const {config} = usePrepareContractWrite({
         address: contractAddress,
         functionName: "bet",
         abi: wcbet.abi,
-        args: [team[0]],
+        args: [selectedTeam!],
         overrides: {            
             value: ethers.utils.parseEther(String(betValue)),
           }
@@ -46,44 +26,54 @@ const TeamCard: FC<TeamProps> = ({team}) => {
 
     const {write, data, error, isLoading, isSuccess} = useContractWrite(config)
 
-    const handleFormOpen = () => {
-        setBetValue(0)
-        setIsFormOpen(!isFormOpen)
-    }
-
     // team id + msg.value
     const bet = () => {        
         write?.();
     }
 
-    return (
-        <div className=" max-h-fit flex flex-col shadow-md rounded border-red-100 m-5 p-5">
-            <h3 className="text-center mb-2">{Number(team[0]) + 1} - {team[1].toString()}</h3>
-            <p className=" m-3 text-center">cantidad apostada a {team[1]} {team[2] > 0 ? ethers.utils.formatEther(team[2]) : 0} matic</p>
-            <button        
-             style={isFormOpen ? {display: "none"} : {display: "block"}} 
-             onClick={handleFormOpen} 
-             className=" rounded bg-gray-300 p-2 center"
-            > apostar
-            </button>
-            {isFormOpen && (
-                <div>
-                    <div className="mt-4">
-                        <div className="flex flex-col">
-                            <label>Cantidad a apostar {betValue} ( eth ) </label>
-                            <input  
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                onChange={(e) => setBetValue(Number(e.target.value))} 
-                                type="number" 
-                            />
-                        </div>
-                        <div className="flex align-center justify-between mt-4">
-                            <button  onClick={bet}>Apostar</button>
-                            <button onClick={handleFormOpen}>cerrar</button>  
-                        </div>                       
-                    </div>
+
+    const selectTeam = (teamId: number) => {
+        if(teamId < 0 ) return;
+        setSelectedTeam(teamId);
+    }
+
+  return (
+    <div className="flex mb-10 gap-10 mr-10 ml-10">  
+        <div className="flex-1">
+            <h1 className=" text-[82px]  text-[#D9F40B]">Workshop</h1>
+            <p className="mt-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam repellendus saepe fuga voluptate commodi debitis itaque soluta deleniti, odio molestiae, repellat iure impedit ipsum magni ab, modi deserunt rerum asperiores.</p>
+        </div>
+
+        <div className="flex-1 ">        
+            <div className="rounded p-2 h-[60vh] overflow-scroll border-solid border-4 border-white/[0.4] flex flex-wrap justify-center mt-10">
+                {teamList.map(team  => (
+                    <TeamCard key={team.teamId} team={team} selectTeam={selectTeam} selectedTeam={selectedTeam} />
+                ))}
+                
+            </div>
+            <div className="flex justify-betweenx mt-4 gap-3">
+                <div className=" flex-[3] flex flex-col ">                         
+                    <input className=" rounded-sm p-4 text-black" value={betValue !== 0 ? betValue : "0.01... eth"} onChange={(e) => setBetValue(Number(e.target.value))} type="number"placeholder={`Cantidad a apostar ${ selectedTeam ? "a " + teamList[Number(selectedTeam!.toString())][1] : ""}`} />
                 </div>
-            )}
+                <button onClick={bet} className=" rounded-sm bg-purple-700 flex-1 text-center">Apostar</button>
+            </div>
+        </div>
+    </div>
+  )
+}
+interface TeamProps {
+    team: any[];
+    selectTeam: (teamId: number) => void;
+    selectedTeam?: number;
+}
+const TeamCard: FC<TeamProps> = ({team, selectTeam, selectedTeam}) => {      
+    return (
+        <div 
+            onClick={() => selectTeam(team[0])} 
+            className={`w-[100%] cursor-pointer  flex items-center justify-between shadow-md rounded bg-white/[.08] m-3 p-5 ${selectedTeam?.toString() === team[0]?.toString() && "bg-purple-600/[0.16]"}`}
+        >
+            <h3 className="text-center">{team[1].toString()}</h3>
+            <p className={`m-3 text-center ${team[2] > 0 && " text-green-500"}`}>{team[2] > 0 ? ethers.utils.formatEther(team[2]) : 0} ETH</p>            
         </div>
     )
 }

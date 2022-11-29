@@ -2,4 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
 
+body {
+    background-color: #030303;
+    color: white;
+    font-family: "Viga", sans-serif;
+}

@@ -52,8 +52,8 @@ const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
 
         <div className="flex-1 ">        
             <div className="rounded p-2 h-[60vh] overflow-scroll border-solid border-4 border-white/[0.4] flex flex-wrap justify-center mt-10">
-                {teamList.map(team  => (
-                    <TeamCard key={team.teamId} team={team} selectTeam={selectTeam} selectedTeam={selectedTeam} />
+                {teamList.map((team, i)  => (
+                    <TeamCard key={i} team={team} selectTeam={selectTeam} selectedTeam={selectedTeam} />
                 ))}
                 
             </div>
@@ -63,7 +63,7 @@ const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
                 </div>
                 <button onClick={bet} className=" rounded-sm bg-purple-700 flex-1 text-center">Apostar</button>
             </div>
-            {selectedTeam && betValue > 0 && <p className=" mt-2 opacity-50 text-sm">Si {teamList[selectedTeam][1]} gana el mundial y apuestas {betValue} recibirás {getPotentialProfit(betValue, Number(ethers.utils.formatEther(teamList[selectedTeam!][2])), Number(ethers.utils.formatEther(totalBetValue?.toString()!)))}</p> }
+            {selectedTeam && betValue > 0 && <p className=" mt-2 opacity-50 text-sm">Si {teamList[selectedTeam][1]} gana el mundial y apuestas {betValue} recibirás {getPotentialProfit(betValue, Number(ethers.utils.formatEther(teamList[selectedTeam!][2])), Number(ethers.utils.formatEther(totalBetValue?.toString()!)))} ETH</p> }
         </div>
   )
 }
@@ -76,10 +76,10 @@ const TeamCard: FC<TeamProps> = ({team, selectTeam, selectedTeam}) => {
     return (
         <div 
             onClick={() => selectTeam(team[0])} 
-            className={`w-[100%] cursor-pointer  flex items-center justify-between shadow-md rounded bg-white/[.08] m-3 p-5 ${selectedTeam?.toString() === team[0]?.toString() && "bg-purple-600/[0.16]"}`}
+            className={`w-[100%] cursor-pointer  flex items-center justify-between shadow-md rounded text-[18px] bg-white/[.08] m-3 p-5 ${selectedTeam?.toString() === team[0]?.toString() && "bg-purple-600/[0.16]"}`}
         >
             <h3 className="text-center">{team[1].toString()}</h3>
-            <p className={`m-3 ml-5 text-center ${team[2] > 0 && " text-green-500"}`}>{team[2] > 0 ? ethers.utils.formatEther(team[2]) : 0} ETH</p>            
+            <p className={`m-3 ml-5 text-center ${team[2] > 0 && " text-[#33E459]"}`}>{team[2] > 0 ? ethers.utils.formatEther(team[2]) : 0} ETH</p>            
         </div>
     )
 }

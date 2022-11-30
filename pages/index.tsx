@@ -54,7 +54,7 @@ export default function Home() {
                   <p className="mt-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam repellendus saepe fuga voluptate commodi debitis itaque soluta deleniti, odio molestiae, repellat iure impedit ipsum magni ab, modi deserunt rerum asperiores.</p>
 
                   <div className="flex flex-col mt-10">
-                  { contractAddress.length > 1 &&  <p className="text-xl">Connected to:
+                  { contractAddress.length > 1 &&  <p className="text-xl">Conectado a:
                    <span className="ml-3 text-[#D9F40B]" >{contractAddress}</span></p> } 
 
                     <p className="text-xl">Cantidad total apostada:

@@ -1,8 +1,9 @@
 import { ethers } from "ethers";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import  wcbet  from "../constants/abi.json"
 import {useContractAddressStore} from "../stores/contractAddressStore"
+import {toast} from "react-toastify";
 
 interface Props {
     teamList: any[];
@@ -32,10 +33,11 @@ const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
         args: [selectedTeam!],
         overrides: {            
             value: ethers.utils.parseEther(String(betValue)),
-          }
+        }        
     })
 
     const {write, data, error, isLoading, isSuccess} = useContractWrite(config)
+        
 
     // team id + msg.value
     const bet = () => {        
@@ -61,7 +63,7 @@ const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
                 <div className=" flex-[3] flex flex-col ">                         
                     <input className=" rounded-sm p-4 text-black" value={typeof betValue !== "undefined" ? betValue : "0.01... eth"} onChange={(e) => setBetValue(Number(e.target.value))} type="number" step="0.01" placeholder={`Cantidad a apostar ${ selectedTeam ? "a " + teamList[Number(selectedTeam!.toString())][1] : ""}`} />                   
                 </div>
-                <button onClick={bet} className=" rounded-sm bg-purple-700 flex-1 text-center">Apostar</button>
+                <button disabled={isLoading} onClick={bet} className=" rounded-sm bg-purple-700 flex-1 text-center">{isLoading ? "..." : "Apostar"}</button>
             </div>
             {selectedTeam && betValue > 0 && <p className=" mt-2 opacity-50 text-sm">Si {teamList[selectedTeam][1]} gana el mundial y apuestas {betValue} recibirás {getPotentialProfit(betValue, Number(ethers.utils.formatEther(teamList[selectedTeam!][2])), Number(ethers.utils.formatEther(totalBetValue?.toString()!)))} ETH</p> }
         </div>

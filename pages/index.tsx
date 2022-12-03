@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { abi } from "../constants/abi.json";
 import { useContractRead } from "wagmi";
 import SelectContractAddress from "../components/SelectContractAddress";
@@ -6,12 +5,13 @@ import TeamList from "../components/TeamList";
 import AppLayout from "../components/layouts/AppLayout";
 import {useContractAddressStore} from "../stores/contractAddressStore"
 import { ethers } from "ethers";
-
+import WithdrawFunds from "../components/WithdrawFunds";
 
 
 export default function Home() {
   
   const contractAddress = useContractAddressStore((state) => state.contractAddress)
+
   const {data: totalBetAmount = 0} = useContractRead({
     address: contractAddress,
     abi: abi,
@@ -19,12 +19,22 @@ export default function Home() {
     chainId: 5
   })
 
-  const {data: teamList = [], error}  = useContractRead({
+  const {data: winnerId = 99} = useContractRead({
+    address: contractAddress,
+    abi: abi,
+    functionName: "winnerId",
+    chainId: 5
+  })
+
+  console.log(Number(winnerId))
+
+  const {data: teamList = [], error, isLoading}  = useContractRead({
     address: contractAddress,
     abi: abi,
     functionName: "getTeamList",
     chainId: 5
   })
+
 
   if(error) return(
     <AppLayout>
@@ -51,7 +61,7 @@ export default function Home() {
                 <div className="flex-1">
                   <h1 className=" text-[82px]  text-[#D9F40B]">Workshop</h1>
 
-                  <p className="mt-5">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magnam repellendus saepe fuga voluptate commodi debitis itaque soluta deleniti, odio molestiae, repellat iure impedit ipsum magni ab, modi deserunt rerum asperiores.</p>
+                  <p className="mt-5">Adivina que equipo ganará la copa del mundo de Qatar 2022. ¿ Cuál de los 16 equipos será el ganador ?</p>
 
                   <div className="flex flex-col mt-10">
                   { contractAddress.length > 1 &&  <p className="text-xl">Conectado a:
@@ -62,7 +72,10 @@ export default function Home() {
                     </p>                    
                   </div>
                   
-
+                  { Number(winnerId) < 16 && (
+                    <WithdrawFunds winnerId={Number(winnerId)}/>
+                  )}
+                  
                 </div>
                 <TeamList totalBetValue={totalBetAmount as number} teamList={teamList as any[]}/>
               </div>

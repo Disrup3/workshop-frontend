@@ -27,7 +27,7 @@ const SelectContractAddress: FC<Props> = () => {
           value={formAddress}  
           onChange={(e) => setFormAddress(e.target.value)}
         />
-        <button className=" p-1 mt-2 bg-purple-700 rounded hover:bg-purple-500" onClick={() => setMainAddress()}>Confirmar</button>
+        <button className=" p-1 mt-2 bg-purple-700 rounded hover:bg-purple-500" onClick={() => setMainAddress()}>Confirmar</button>       
       </div>
     </div>
   )

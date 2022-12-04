@@ -16,7 +16,8 @@ export default function Home() {
     address: contractAddress,
     abi: abi,
     functionName: "totalBettedAmount",
-    chainId: 5
+    chainId: 5,
+    watch: true
   })
 
   const {data: winnerId = 99} = useContractRead({
@@ -32,7 +33,9 @@ export default function Home() {
     address: contractAddress,
     abi: abi,
     functionName: "getTeamList",
-    chainId: 5
+    chainId: 5,
+    watch: true,
+    cacheTime: 10000
   })
 
 

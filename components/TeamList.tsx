@@ -33,7 +33,7 @@ const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
         args: [selectedTeam!],
         overrides: {            
             value: ethers.utils.parseEther(String(betValue)),
-        }        
+        }                
     })
 
     const {write, data, error, isLoading, isSuccess} = useContractWrite(config)

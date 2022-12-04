@@ -24,7 +24,9 @@ export default function Home() {
     address: contractAddress,
     abi: abi,
     functionName: "winnerId",
-    chainId: 5
+    chainId: 5,
+    watch: true, 
+    cacheTime: 60000 // 1min 
   })
 
   console.log(Number(winnerId))

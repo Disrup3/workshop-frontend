@@ -2,7 +2,7 @@
 
 export const chainData = {
     "137": {
-        contractAddress: "0xbEfC89BA5Cb664D7d022cf5D0eAEb54f6b86cEA9",
+        contractAddress: "0xf0e37ca0b40a23a7cfa643d94f177850907a9e08",
         abi: []
     }
 }

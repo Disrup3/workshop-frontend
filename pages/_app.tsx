@@ -6,12 +6,12 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const { chains, provider } = configureChains(
-  [chain.polygon, chain.goerli],
+  [chain.localhost, chain.goerli],
   [  publicProvider() ]
 )
 
 const client = createClient({
-  autoConnect: false,
+  autoConnect: true,
   provider
 })
 

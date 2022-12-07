@@ -1,10 +1,18 @@
+import { useEffect, useState } from 'react';
 import { useAccount, useConnect, useDisconnect } from 'wagmi'
 import { InjectedConnector } from "wagmi/connectors/injected";
 import { beautifyAddress } from '../utils/address';
 
 const Navbar = () => {
+    const {address: wagmiaddress, isConnected: wIsconnected} = useAccount();
+    const [address, setAddress] = useState("")
+    const [isConnected, setIsconnected] = useState(true)
 
-    const {address, isConnected} = useAccount();
+    useEffect(() => {
+      setAddress(wagmiaddress || "");
+      setIsconnected(wIsconnected);
+    }, [wagmiaddress, wIsconnected])   
+
     const { connect } = useConnect({
         connector: new InjectedConnector()
     })
@@ -15,7 +23,7 @@ const Navbar = () => {
         <img className='w-[100px] object-contain' src='./images/logomrc.avif' />
         <div>
           {isConnected 
-              ?   <p>{beautifyAddress(address!)}</p>
+              ?   <p>{beautifyAddress(address)}</p>
               :               
                   <button onClick={() => connect()}> Connect wallet </button>                
           }

@@ -6,9 +6,9 @@
     {
       "inputs": [
         {
-          "internalType": "string[16]",
+          "internalType": "string[]",
           "name": "_teamList",
-          "type": "string[16]"
+          "type": "string[]"
         }
       ],
       "stateMutability": "nonpayable",
@@ -91,6 +91,19 @@
       "type": "event"
     },
     {
+      "inputs": [],
+      "name": "MAX_TEAMS_NUMBER",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
       "inputs": [
         {
           "internalType": "uint256",
@@ -142,11 +155,16 @@
               "internalType": "uint256",
               "name": "amountBetted",
               "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "defeated",
+              "type": "bool"
             }
           ],
-          "internalType": "struct WorldCupBet.TeamInfo[16]",
+          "internalType": "struct WorldCupBet.TeamInfo[]",
           "name": "",
-          "type": "tuple[16]"
+          "type": "tuple[]"
         }
       ],
       "stateMutability": "view",
@@ -155,20 +173,14 @@
     {
       "inputs": [
         {
-          "internalType": "address",
-          "name": "_user",
-          "type": "address"
-        }
-      ],
-      "name": "getUserProceeds",
-      "outputs": [
-        {
           "internalType": "uint256",
-          "name": "",
+          "name": "teamId",
           "type": "uint256"
         }
       ],
-      "stateMutability": "view",
+      "name": "markDefeatedTeam",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {
@@ -234,6 +246,11 @@
           "internalType": "uint256",
           "name": "amountBetted",
           "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "defeated",
+          "type": "bool"
         }
       ],
       "stateMutability": "view",

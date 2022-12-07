@@ -54,7 +54,7 @@ const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
   return (        
 
         <div className="flex-1 ">        
-            <div className="rounded p-2 h-[60vh] overflow-scroll border-solid border-4 border-white/[0.4] flex flex-wrap justify-center mt-10">
+            <div className="rounded sectionbets p-2 h-[60vh] overflow-scroll border-solid border-4 border-white/[0.4] flex flex-wrap justify-center mt-10">
                 {isLoading && <p>Loading</p>}
                 {teamList.map((team, i)  => (
                     <TeamCard key={i} team={team} selectTeam={selectTeam} selectedTeam={selectedTeam} />
@@ -66,7 +66,7 @@ const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
                 </div>
                 <button disabled={isLoading} onClick={bet} className=" rounded-sm bg-purple-700 flex-1 text-center">{isLoading ? "..." : "Apostar"}</button>
             </div>
-            {selectedTeam && betValue > 0 && <p className=" mt-2 opacity-50 text-sm">Si {teamList[selectedTeam][1]} gana el mundial y apuestas {betValue} recibirás {getPotentialProfit(betValue, Number(ethers.utils.formatEther(teamList[selectedTeam!][2])), Number(ethers.utils.formatEther(totalBetValue?.toString()!)))} ETH</p> }
+            {selectedTeam && betValue > 0 && <p className=" mt-2 opacity-50 text-sm">Si {teamList[selectedTeam][1]} gana el mundial y apuestas {betValue} recibirás al dia de hoy: {getPotentialProfit(betValue, Number(ethers.utils.formatEther(teamList[selectedTeam!][2])), Number(ethers.utils.formatEther(totalBetValue?.toString()!)))} ETH</p> }
         </div>
   )
 }

@@ -4,8 +4,42 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
 
+@font-face {
+    font-family: "Turismo";
+    src: local("Turismo"),
+      url("/fonts/FontsFree-Net-TurismoCF-100.ttf") format("truetype");
+    font-weight: bold;
+  }
+
 body {
     background-color: #030303;
     color: white;
     font-family: "Viga", sans-serif;
+}
+h1 {
+    font-family: "Turismo";
+}
+
+.sectionbets {
+    overflow-x: hidden;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
 }

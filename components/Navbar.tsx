@@ -11,7 +11,7 @@ const Navbar = () => {
     const {disconnect} = useDisconnect();
 
   return (
-    <nav className='flex justify-between items-center p-5'>
+    <nav className='flex justify-between items-center pr-5 pl-5'>
         <img className='w-[100px] object-contain' src='./images/logomrc.avif' />
         <div>
           {isConnected 

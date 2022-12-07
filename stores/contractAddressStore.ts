@@ -4,6 +4,7 @@ interface ContractAddressStoreState {
   contractAddress: string;
   updateAddress: (newAddress: string) => void;
 }
+
 export const useContractAddressStore = create<ContractAddressStoreState>((set) => (
     {
       contractAddress: "",

@@ -22,7 +22,8 @@ const AppLayout: FC<Props> = ({children}) => {
   return (
     <>
         <Head>
-            <title>Disrup3 - workshop</title>
+            <title>Mr crypto - world cup</title>
+            <link rel="icon" type='image/avif' href="./images/logomrc.avif" />
         </Head>
         <Navbar /> 
         {children}

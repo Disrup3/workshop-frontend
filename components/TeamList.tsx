@@ -2,12 +2,13 @@ import { ethers } from "ethers";
 import { FC, useEffect, useState } from "react";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import  wcbet  from "../constants/abi.json"
-import {useContractAddressStore} from "../stores/contractAddressStore"
-import {toast} from "react-toastify";
+import { chainData } from "../constants/chainData";
 
 interface Props {
     teamList: any[];
     totalBetValue?: number;
+    isLoading: boolean;
+    error: boolean;
 }
 
 const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
@@ -24,7 +25,7 @@ const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
         return (betValue * (totalBetValue + betValue)  / (valueBettedToTeam + betValue)).toFixed(3)
     }
 
-    const contractAddress = useContractAddressStore((state) => state.contractAddress)
+    const contractAddress = chainData[137].contractAddress || ""
 
     const {config} = usePrepareContractWrite({
         address: contractAddress,
@@ -54,10 +55,10 @@ const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
 
         <div className="flex-1 ">        
             <div className="rounded p-2 h-[60vh] overflow-scroll border-solid border-4 border-white/[0.4] flex flex-wrap justify-center mt-10">
+                {isLoading && <p>Loading</p>}
                 {teamList.map((team, i)  => (
                     <TeamCard key={i} team={team} selectTeam={selectTeam} selectedTeam={selectedTeam} />
-                ))}
-                
+                ))}                
             </div>
             <div className="flex justify-betweenx mt-4 gap-3">
                 <div className=" flex-[3] flex flex-col ">                         

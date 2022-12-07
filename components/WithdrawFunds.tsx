@@ -2,6 +2,7 @@ import { FC } from "react"
 import { useAccount, useContractRead, useContractWrite, usePrepareContractWrite } from "wagmi";
 import { useContractAddressStore } from "../stores/contractAddressStore"
 import wcbet from "../constants/abi.json";
+import { ethers } from "ethers";
 
 interface Props {
     winnerId: number;
@@ -20,7 +21,7 @@ const WithdrawFunds: FC<Props> = ({winnerId}) => {
     const {data: userProcceds = 0} = useContractRead({
         address: contractAddress,
         functionName: "getUserProceeds",
-        args: ["0x7eC7aF8CFF090c533dc23132286f33dD31d13E29"],
+        args: [userAddress || ""],
         abi: wcbet.abi,
         watch: true
     });
@@ -32,8 +33,9 @@ const WithdrawFunds: FC<Props> = ({winnerId}) => {
     <div className="mt-10">
         {Number(userProcceds) <= 0 ? <p>No tienes fondos que reclamar</p> : (
             <>
-                <p>El id del equipo ganador es {winnerId}</p>
-                <button onClick={() => write?.()} className="bg-purple-600 p-4 rounded-sm">Reclamar fondos</button>
+                <p>Enhorabuena has apostado por el equipo ganador! </p>
+                <p>Puedes reclamar {Number(userProcceds) / 1e18} ETH</p>
+                <button onClick={() => write?.()} disabled={isLoading} className="bg-purple-600 mt-2 p-4 rounded-sm">Reclamar fondos</button>
                 {error && <p>Algo salió mal</p>}
             </>
         )}

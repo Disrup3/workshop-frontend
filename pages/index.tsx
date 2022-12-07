@@ -51,9 +51,9 @@ export default function Home() {
             <div className="mt-5">
               <div className="flex flex-wrap mb-10 gap-10 mr-10 ml-10 pt-[5rem]">
                 <div className="flex-1">
-                  <h1 className=" text-[82px]  text-[#D9F40B]">Mr crypto betting app</h1>
+                  <h1 className=" text-[60px]  text-[#D9F40B]">Mr crypto betting app</h1>
 
-                  <p className="mt-5">Adivina que equipo ganará la copa del mundo de Qatar 2022. ¿ Cuál de los 16 equipos será el ganador ?</p>
+                  <p className="mt-5">Adivina que equipo ganará la copa del mundo de Qatar 2022.</p>
 
                   <div className="flex flex-col mt-10">
                     <p className="text-xl">Cantidad total apostada:

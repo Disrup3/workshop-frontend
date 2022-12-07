@@ -27,7 +27,6 @@ const WithdrawFunds: FC<Props> = ({winnerId}) => {
     });
 
     const {write, data, error, isLoading, isSuccess} = useContractWrite(config)
-    console.log(isLoading)
 
   return (
     <div className="mt-10">
@@ -35,8 +34,12 @@ const WithdrawFunds: FC<Props> = ({winnerId}) => {
             <>
                 <p>Enhorabuena has apostado por el equipo ganador! </p>
                 <p>Puedes reclamar {Number(userProcceds) / 1e18} ETH</p>
-                <button  onClick={() => write?.()} disabled={isLoading} className="bg-purple-600 mt-2 p-4 rounded-sm">{isLoading ? <span>lds-dual-ring</span> : "Reclamar fondos"}</button>
-                {error && <p className="text-red-500">algo ha ido mal :( comprueba que tienes suficiente saldo para apostar</p>}
+                <button  
+                    onClick={() => write?.()}
+                    disabled={isLoading} 
+                    className="bg-purple-600 mt-2 p-4 rounded-sm"
+                >{isLoading ? <span className="lds-dual-ring mr-2"></span> : "Reclamar fondos"}</button>
+                {error && <p className="text-red-500 mt-2">algo ha ido mal :( comprueba que estas en la red correcta o has aprobado la transacción</p>}
             </>
         )}
         

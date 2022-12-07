@@ -25,8 +25,10 @@ const AppLayout: FC<Props> = ({children}) => {
             <title>Mr crypto - world cup</title>
             <link rel="icon" type='image/avif' href="./images/logomrc.avif" />
         </Head>
-        <Navbar /> 
-        {children}
+        <div className='bgImage' style={{minHeight: "100vh"}}>    
+          <Navbar /> 
+          {children}
+        </div>
     </>    
   )
 }

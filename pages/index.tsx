@@ -47,7 +47,7 @@ export default function Home() {
 
   return (
     <AppLayout>
-      <main>    
+      <main >    
             <div className="mt-5">
               <div className="flex flex-wrap mb-10 gap-10 mr-10 ml-10 pt-[5rem]">
                 <div className="flex-1">

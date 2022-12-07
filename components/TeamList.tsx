@@ -37,8 +37,9 @@ const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
         }                
     })
 
+
     const {write, data, error, isLoading, isSuccess} = useContractWrite(config)
-        
+
 
     // team id + msg.value
     const bet = () => {        
@@ -64,9 +65,10 @@ const TeamList: FC<Props> = ({teamList, totalBetValue}) => {
                 <div className=" flex-[3] flex flex-col ">                         
                     <input className=" rounded-sm p-4 text-black" value={typeof betValue !== "undefined" ? betValue : "0.01... eth"} onChange={(e) => setBetValue(Number(e.target.value))} type="number" step="0.01" placeholder={`Cantidad a apostar ${ selectedTeam ? "a " + teamList[Number(selectedTeam!.toString())][1] : ""}`} />                   
                 </div>
-                <button disabled={isLoading} onClick={bet} className=" rounded-sm bg-purple-700 flex-1 text-center">{isLoading ? "..." : "Apostar"}</button>
+                <button disabled={isLoading} onClick={bet} className=" rounded-sm bg-purple-700 flex-1 text-center">{isLoading  ? <span className="lds-dual-ring"></span> : "Apostar"}</button>
             </div>
             {selectedTeam && betValue > 0 && <p className=" mt-2 opacity-50 text-sm">Si {teamList[selectedTeam][1]} gana el mundial y apuestas {betValue} recibirás al dia de hoy: {getPotentialProfit(betValue, Number(ethers.utils.formatEther(teamList[selectedTeam!][2])), Number(ethers.utils.formatEther(totalBetValue?.toString()!)))} ETH</p> }
+            {error && <p className="text-red-400 mt-2">algo ha ido mal :( comprueba que tienes suficiente saldo para apostar</p>}
         </div>
   )
 }
@@ -82,7 +84,10 @@ const TeamCard: FC<TeamProps> = ({team, selectTeam, selectedTeam}) => {
             className={`w-[100%] cursor-pointer  flex items-center justify-between shadow-md rounded text-[18px] bg-white/[.08] m-3 p-5 ${selectedTeam?.toString() === team[0]?.toString() && "bg-purple-600/[0.16]"}`}
         >
             <h3 className="text-center">{team[1].toString()}</h3>
-            <p className={`m-3 ml-5 text-center ${team[2] > 0 && " text-[#33E459]"}`}>{team[2] > 0 ? ethers.utils.formatEther(team[2]) : 0} ETH</p>            
+            <div>
+                <p className="opacity-0.5 text-xs text-left">Cantidad apostada </p>
+                <p className={`m-3 ml-5 text-center ${team[2] > 0 && " text-[#33E459]"}`}>{team[2] > 0 ? ethers.utils.formatEther(team[2]) : 0} ETH</p>            
+            </div>
         </div>
     )
 }

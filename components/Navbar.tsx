@@ -19,8 +19,8 @@ const Navbar = () => {
     const {disconnect} = useDisconnect();
 
   return (
-    <nav className='flex justify-between items-center pr-5 pl-5'>
-        <img className='w-[100px] object-contain' src='./images/logomrc.avif' />
+    <nav className='flex justify-between items-center pr-5 pt-5 pl-5'>
+        <img className='w-[200px] object-contain' src='./images/mrlogo.png' />
         <div>
           {isConnected 
               ?   <p>{beautifyAddress(address)}</p>

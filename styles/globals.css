@@ -11,11 +11,13 @@
     font-weight: bold;
   }
 
-body {
-    background-color: #030303;
+body {   
+    background-color: rgba(0, 0, 0, 1);    
     color: white;
     font-family: "Viga", sans-serif;
 }
+
+
 h1 {
     font-family: "Turismo";
 }
@@ -43,3 +45,29 @@ h1 {
 ::-webkit-scrollbar-thumb:hover {
     background: #555; 
 }
+
+.lds-dual-ring {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    cursor: progress;
+  }
+  .lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 35px;
+    height: 35px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

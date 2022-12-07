@@ -35,7 +35,7 @@ const WithdrawFunds: FC<Props> = ({winnerId}) => {
             <>
                 <p>Enhorabuena has apostado por el equipo ganador! </p>
                 <p>Puedes reclamar {Number(userProcceds) / 1e18} ETH</p>
-                <button onClick={() => write?.()} disabled={isLoading} className="bg-purple-600 mt-2 p-4 rounded-sm">Reclamar fondos</button>
+                <button  onClick={() => write?.()} disabled={isLoading} className="bg-purple-600 mt-2 p-4 rounded-sm">{isLoading ? <span>lds-dual-ring</span> : "Reclamar fondos"}</button>
                 {error && <p>Algo salió mal</p>}
             </>
         )}

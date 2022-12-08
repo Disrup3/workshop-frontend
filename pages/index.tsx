@@ -67,15 +67,22 @@ export default function Home() {
                 flexDirection: "column",
               }}>
                 <Banner totalBetAmount={`${ethers.utils.formatEther(String(totalBetAmount))} eth`} />
-                <TeamListBet
-                  classname="desktop-hidden"
-                  totalBetValue={totalBetAmount as number} 
-                  teamList={teamList as any[]} 
-                  error={false} 
-                  isLoading={true}
-                />
+                {
+                  winnerId as number > 8 ?
+                  <TeamListBet
+                    classname="desktop-hidden"
+                    totalBetValue={totalBetAmount as number} 
+                    teamList={teamList as any[]} 
+                    error={false} 
+                    isLoading={true}
+                  />
+                  : 
+                  <WithdrawFunds classname="desktop-hidden" winnerId={winnerId as number} teamList={teamList as any[]} />
+                }
                 <TeamListStats teamList={teamList as any[]} />
               </Box>
+              {
+                winnerId as number > 8 ?
                 <TeamListBet
                   classname="mobile-hidden"
                   totalBetValue={totalBetAmount as number} 
@@ -83,6 +90,9 @@ export default function Home() {
                   error={false} 
                   isLoading={true}
                 />
+                : 
+                <WithdrawFunds classname="mobile-hidden" winnerId={winnerId as number} teamList={teamList as any[]} />
+              }
             </Box>
             <div style={{
               position: "fixed",

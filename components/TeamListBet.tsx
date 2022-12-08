@@ -96,7 +96,7 @@ const TeamListBet: FC<Props> = ({teamList, totalBetValue, classname}) => {
                 display:"flex",
                 flexDirection: "column",
             }}>
-                <input className="p-4" style={{borderRadius: "8px", background: "#544959", marginBottom: "10px"}} value={typeof betValue !== "undefined" ? betValue : "0.01... eth"} onChange={(e) => setBetValue(Number(e.target.value))} type="number" step="0.01" placeholder={`Cantidad a apostar ${ selectedTeam ? "a " + teamList[Number(selectedTeam!.toString())][1] : ""}`} />                   
+                <input className="p-4" style={{borderRadius: "8px", background: "#544959", marginBottom: "10px", fontSize: "10px"}} value={typeof betValue !== "undefined" ? betValue : "0.01... eth"} onChange={(e) => setBetValue(Number(e.target.value))} type="number" step="0.01" placeholder={`Cantidad a apostar ${ selectedTeam ? "a " + teamList[Number(selectedTeam!.toString())][1] : ""}`} />                   
                 <Button disabled={isLoading} onClick={bet} sx={{
                     padding: "14px 30px",
                     background: "linear-gradient(98.16deg, #D9F40B 1.81%, rgba(217, 244, 11, 0.51) 100%)",
@@ -107,7 +107,7 @@ const TeamListBet: FC<Props> = ({teamList, totalBetValue, classname}) => {
                     textTransform: "uppercase",
                     width: "100%"
                 }}>{isLoading  ? <span className="lds-dual-ring"></span> : "Apostar"}</Button>
-                {selectedTeam && betValue > 0 && <p className=" mt-2 opacity-50 text-sm">Si {teamList[selectedTeam][1]} gana el mundial y apuestas {betValue} recibirás al dia de hoy: {getPotentialProfit(betValue, Number(ethers.utils.formatEther(teamList[selectedTeam!][2])), Number(ethers.utils.formatEther(totalBetValue?.toString()!)))} ETH</p> }
+                {selectedTeam && betValue > 0 && <p className=" mt-4 opacity-50 text-sm" style={{fontSize: "10px"}}>Si {teamList[selectedTeam][1]} gana el mundial y apuestas {betValue} recibirás al dia de hoy: {getPotentialProfit(betValue, Number(ethers.utils.formatEther(teamList[selectedTeam!][2])), Number(ethers.utils.formatEther(totalBetValue?.toString()!)))} ETH</p> }
                 {error && <p className="text-red-400 mt-2">algo ha ido mal :( comprueba que tienes suficiente saldo para apostar</p>}
             </Box>
             </Box>

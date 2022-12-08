@@ -5,9 +5,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Viga&display=swap');
 
 @font-face {
-    font-family: "Turismo";
-    src: local("Turismo"),
-      url("/fonts/FontsFree-Net-TurismoCF-100.ttf") format("truetype");
+    font-family: "Monument";
+    src: local("Monument"),
+      url("/fonts/MonumentExtended-Regular.otf") format("truetype");
     font-weight: bold;
   }
 
@@ -19,7 +19,7 @@ body {
 
 
 h1 {
-    font-family: "Turismo";
+    font-family: "Monument";
 }
 
 .sectionbets {

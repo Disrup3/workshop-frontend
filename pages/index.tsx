@@ -7,6 +7,7 @@ import WithdrawFunds from "../components/WithdrawFunds";
 import {chainData} from "../constants/chainData"
 import { useEffect, useState } from "react";
 import { useContractAddressStore } from "../stores/contractAddressStore";
+import { Banner } from "../components/Banner";
 
 export default function Home() {  
 
@@ -49,8 +50,8 @@ export default function Home() {
     <AppLayout>
       <main >    
             <div className="mt-5">
-              <div className="flex flex-wrap mb-10 gap-10 mr-10 ml-10 pt-[5rem]">
-                <div className="flex-1">
+              <div className="flex flex-wrap mb-10 gap-10 pt-[5rem] pl-20 pr-20">
+                {/* <div className="flex-1">
                   <h1 className=" text-[60px]  text-[#D9F40B]">Mr crypto betting app</h1>
 
                   <p className="mt-5">Adivina que equipo ganará la copa del mundo de Qatar 2022.</p>
@@ -65,15 +66,45 @@ export default function Home() {
                     <WithdrawFunds winnerId={Number(winnerId)}/>
                   )}
                   
-                </div>
-                <TeamList 
+                </div> */}
+                <Banner totalBetAmount={`${ethers.utils.formatEther(String(totalBetAmount))} eth`} />
+                {/* <TeamList 
                   totalBetValue={totalBetAmount as number} 
                   teamList={teamList as any[]} 
                   error={false} 
                   isLoading={true}
-                />
+                /> */}
               </div>
-            </div>          
+            </div>   
+
+            <div style={{
+              position: "fixed",
+              top: "0",
+              left: "0",
+              right: "0",
+              bottom: "0",
+              overflow: "hidden",
+              zIndex: "-1"
+            }}>
+              <div style={{
+                position: "absolute",
+                top: "0",
+                right: "0",
+                transform: "translate(50%, -50%)",
+                width: "100vw",
+                height: "100vw",
+                background: "radial-gradient(50% 50% at 50% 50%, rgba(217, 244, 11, 0.2) 0%, rgba(0, 0, 0, 0) 100%)"
+              }}></div>  
+              <div style={{
+                position: "absolute",
+                bottom: "0",
+                left: "0",
+                transform: "translate(-50%, 50%)",
+                width: "100vw",
+                height: "100vw",
+                background: "radial-gradient(50% 50% at 50% 50%, rgba(217, 244, 11, 0.2) 0%, rgba(0, 0, 0, 0) 100%)"
+              }}></div>  
+            </div>     
       </main>
    </AppLayout>
   )

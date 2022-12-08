@@ -19,7 +19,13 @@ const Navbar = () => {
     const {disconnect} = useDisconnect();
 
   return (
-    <nav className='flex justify-between items-center pr-5 pt-5 pl-5'>
+    <nav className='flex justify-between items-center' style={{
+      padding: "40px 80px",
+      position: "fixed",
+      top: "0",
+      left: "0",
+      width: "100%"
+    }}>
         <img className='w-[200px] object-contain' src='./images/mrlogo.png' />
         <div>
           {isConnected 

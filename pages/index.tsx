@@ -8,6 +8,9 @@ import {chainData} from "../constants/chainData"
 import { useEffect, useState } from "react";
 import { useContractAddressStore } from "../stores/contractAddressStore";
 import { Banner } from "../components/Banner";
+import TeamListBet from "../components/TeamListBet";
+import { Box } from "@chakra-ui/react";
+import { TeamListStats } from "../components/TeamListStats";
 
 export default function Home() {  
 
@@ -49,34 +52,38 @@ export default function Home() {
   return (
     <AppLayout>
       <main >    
-            <div className="mt-5">
-              <div className="flex flex-wrap mb-10 gap-10 pt-[5rem] pl-20 pr-20">
-                {/* <div className="flex-1">
-                  <h1 className=" text-[60px]  text-[#D9F40B]">Mr crypto betting app</h1>
-
-                  <p className="mt-5">Adivina que equipo ganará la copa del mundo de Qatar 2022.</p>
-
-                  <div className="flex flex-col mt-10">
-                    <p className="text-xl">Cantidad total apostada:
-                     <span className="ml-3 text-purple-500">{ethers.utils.formatEther(String(totalBetAmount))} eth </span>
-                    </p>                    
-                  </div>
-                  
-                  { Number(winnerId) < 16 && (
-                    <WithdrawFunds winnerId={Number(winnerId)}/>
-                  )}
-                  
-                </div> */}
+            <Box sx={{
+              display: "flex",
+              alignItems: "flex-start",
+              margin: ["0 20px", "0 20px", "0 80px"],
+              justifyContent: "space-between",
+              position: "relative"
+            }}>
+              <Box sx={{
+                width: ["100%", "100%", "100%", "60%"],
+                display: "flex",
+                alignItems: "flex-start",
+                justifyContent: "flex-start",
+                flexDirection: "column",
+              }}>
                 <Banner totalBetAmount={`${ethers.utils.formatEther(String(totalBetAmount))} eth`} />
-                {/* <TeamList 
+                <TeamListBet
+                  classname="desktop-hidden"
                   totalBetValue={totalBetAmount as number} 
                   teamList={teamList as any[]} 
                   error={false} 
                   isLoading={true}
-                /> */}
-              </div>
-            </div>   
-
+                />
+                <TeamListStats teamList={teamList as any[]} />
+              </Box>
+                <TeamListBet
+                  classname="mobile-hidden"
+                  totalBetValue={totalBetAmount as number} 
+                  teamList={teamList as any[]} 
+                  error={false} 
+                  isLoading={true}
+                />
+            </Box>
             <div style={{
               position: "fixed",
               top: "0",

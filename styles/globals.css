@@ -12,13 +12,13 @@
   }
 
 body {   
-    background-color: rgba(0, 0, 0, 1);    
-    color: white;
+    background-color: #0B090C!important;    
+    color: white!important;
     font-family: "Viga", sans-serif;
 }
 
 
-h1 {
+h1, *{
     font-family: "Monument";
 }
 
@@ -71,3 +71,16 @@ h1 {
       transform: rotate(360deg);
     }
   }
+
+
+@media (max-width: 990px){
+  .mobile-hidden{
+    display: none!important;
+  }
+}
+
+@media (min-width: 991px){
+  .desktop-hidden{
+    display: none!important;
+  }
+}

@@ -1,16 +1,22 @@
 import { Box, Image, Text } from "@chakra-ui/react"
+import { FC } from "react";
+
+interface BannerProps {
+    totalBetAmount: String;
+}
 
 
-export const Banner = ({totalBetAmount})=>{
+export const Banner:FC<BannerProps> = ({totalBetAmount})=>{
     return(
         <Box sx={{
             display:"flex",
-            width: "60%",
-            padding: "55px",
-            borderRadius: "30px",
+            padding: ["15px", "25px", "55px"],
+            borderRadius: ["10px", "10px", "30px"],
             background: "linear-gradient(98.16deg, #D9F40B 1.81%, rgba(217, 244, 11, 0.51) 100%)",
             position: "relative",
-            marginTop: "10vh"
+            marginTop: ["5vh", "10vh", "10vh"],
+            width: "100%",
+            zIndex: "1"
             }}>
             <Box sx={{
                 width: "100%",
@@ -21,13 +27,16 @@ export const Banner = ({totalBetAmount})=>{
                 color: "#000"
             }}>
                 <Text as="h1" sx={{
-                    fontSize: "40px",
-                    lineHeight: "45px",
+                    fontSize: ["25px", "25px", "40px"],
+                    lineHeight: ["30px", "30px", "45px"],
                     textTransform: "uppercase",
                     color: "#000",
                     marginBottom:"15px"
                 }}>Mrcrypto <br></br>betting app</Text>
-                <Text as="p">Adivina que equipo ganará la copa del mundo de Qatar 2022.</Text>
+                <Text as="p" sx={{
+                    width: ["100%", "60%"],
+                    fontSize: ["12px", "12px", "14px"]
+                    }}>Adivina que equipo ganará la copa del mundo de Qatar 2022.</Text>
                 <Box sx={{
                     padding: "10px",
                     borderRadius: "10px",
@@ -59,7 +68,8 @@ export const Banner = ({totalBetAmount})=>{
                 position: "absolute",
                 bottom: "0",
                 right: "0",
-                width: "250px"
+                width: ["150px", "200px", "250px"],
+                zIndex: "-1"
             }}></Image>
         </Box>
     )

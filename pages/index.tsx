@@ -66,7 +66,7 @@ export default function Home() {
                 justifyContent: "flex-start",
                 flexDirection: "column",
               }}>
-                <Banner totalBetAmount={`${ethers.utils.formatEther(String(totalBetAmount))} eth`} />
+                <Banner totalBetAmount={`${ethers.utils.formatEther(String(totalBetAmount))} Matic`} />
                 {
                   winnerId as number > 8 ?
                   <TeamListBet

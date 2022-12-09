@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ChakraProvider } from '@chakra-ui/react';
 
 const { chains, provider } = configureChains(
-  [chain.localhost, chain.goerli],
+  [chain.localhost, chain.goerli, chain.polygon],
   [  publicProvider() ]
 )
 

@@ -111,7 +111,7 @@ const WithdrawFunds: FC<Props> = ({winnerId, teamList, classname}) => {
                         fontFamily: "'Monument'",
                         fontSize: "14px",
                         width: "max-content"
-                    }}>{(Number(userProcceds) / 1e18).toFixed(3)} ETH</Text>
+                    }}>{(Number(userProcceds) / 1e18).toFixed(3)} MATIC</Text>
                 </Box>
                 <Button onClick={() => write?.()} disabled={isLoading} sx={{
                     padding: "14px 30px",
@@ -124,7 +124,7 @@ const WithdrawFunds: FC<Props> = ({winnerId, teamList, classname}) => {
                     width: "100%",
                     marginTop: "10px"
                 }}>{isLoading ? <span>lds-dual-ring</span> : "Reclamar fondos"}</Button>
-                {error && <p className="text-red-500">algo ha ido mal :( comprueba que tienes suficiente saldo para apostar</p>}
+                {error && <p className="text-red-500 mt-2">algo ha ido mal :(</p>}
             </>
         )}
         

@@ -54,7 +54,7 @@ export const Banner:FC<BannerProps> = ({totalBetAmount})=>{
                         fontSize: "14px",
                         width: "max-content",
                         marginRight: "30px"
-                    }}>Total betted</Text>
+                    }}>Bote total</Text>
                     <Text sx={{
                         color: "#D9F40B",
                         textTransform: "uppercase",

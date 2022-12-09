@@ -95,7 +95,7 @@ const TeamTableRow:FC<TeamTableProps> = ({team})=>{
             <Text color={team[2] > 0 ? "#D9F40B" : "#fff"} sx={{
                 fontSize: "14px",
                 marginLeft: "20px"
-            }}>{team[2] > 0 ? ethers.utils.formatEther(team[2]) : 0} ETH</Text>
+            }}>{team[2] > 0 ? ethers.utils.formatEther(team[2]) : 0} Matic</Text>
         </Box>
     )
 }

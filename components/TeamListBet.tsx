@@ -107,7 +107,7 @@ const TeamListBet: FC<Props> = ({teamList, totalBetValue, classname}) => {
                     textTransform: "uppercase",
                     width: "100%"
                 }}>{isLoading  ? <span className="lds-dual-ring"></span> : "Apostar"}</Button>
-                {selectedTeam && betValue > 0 && <p className=" mt-4 opacity-50 text-sm" style={{fontSize: "10px"}}>Si {teamList[selectedTeam][1]} gana el mundial y apuestas {betValue} recibirás al dia de hoy: {getPotentialProfit(betValue, Number(ethers.utils.formatEther(teamList[selectedTeam!][2])), Number(ethers.utils.formatEther(totalBetValue?.toString()!)))} ETH</p> }
+                {selectedTeam && betValue > 0 && <p className=" mt-4 opacity-50 text-sm" style={{fontSize: "10px"}}>Si {teamList[selectedTeam][1]} gana el mundial y apuestas {betValue} recibirás al dia de hoy: {getPotentialProfit(betValue, Number(ethers.utils.formatEther(teamList[selectedTeam!][2])), Number(ethers.utils.formatEther(totalBetValue?.toString()!)))} Matic</p> }
                 {error && <p className="text-red-400 mt-2">algo ha ido mal :( comprueba que tienes suficiente saldo para apostar</p>}
             </Box>
             </Box>

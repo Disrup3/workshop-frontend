@@ -6,9 +6,9 @@
     {
       "inputs": [
         {
-          "internalType": "string[16]",
+          "internalType": "string[8]",
           "name": "_teamList",
-          "type": "string[16]"
+          "type": "string[8]"
         }
       ],
       "stateMutability": "nonpayable",
@@ -144,28 +144,9 @@
               "type": "uint256"
             }
           ],
-          "internalType": "struct WorldCupBet.TeamInfo[16]",
+          "internalType": "struct WorldCupBet.TeamInfo[8]",
           "name": "",
-          "type": "tuple[16]"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_user",
-          "type": "address"
-        }
-      ],
-      "name": "getUserProceeds",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
+          "type": "tuple[8]"
         }
       ],
       "stateMutability": "view",
